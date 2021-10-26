@@ -108,12 +108,31 @@ let lista = [
 lista.forEach((element) => {
     document.querySelector(".container").innerHTML += `<div class="iconCard">
                                                             <div class="icon">
-                                                                <i class="${element.family} ${element.prefix}${element.name}"></i>
+                                                                <i class="${element.type} ${element.family} ${element.prefix}${element.name}"></i>
                                                                 <p>${element.name}</p>
                                                             </div>
                                                         </div>`;
-    console.log(element);
-})
+});
+
+let listIconHtml = document.querySelectorAll("i");
+
+for (let i = 0; i < listIconHtml.length; i++) {
+    const element = listIconHtml[i];
+
+    lista.forEach((icona) => {
+        if (element.classList.contains("animal")) {
+            
+             element.classList.add("blue");
+        }
+        else if(element.classList.contains("vegetable")) {
+            element.classList.add("orange")
+        }
+        else {
+            element.classList.add("purple")
+        }
+    })
+           
+}
 
 
 
