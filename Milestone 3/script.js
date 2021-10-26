@@ -145,14 +145,15 @@ for (let i = 0; i < listaCardAnimal.length; i++) {
     let cardAnimali = listaCardAnimal[i];
     let cardVeg = listaCardVegetable[i];
     let cardUs = listaCardUser[i];
-
+   
     optionList.addEventListener("change", function() {
         if (optionList.value == "all") {
-            cardAnimali.style.display = "block";
+            cardAnimali.style.display= "block";
             cardVeg.style.display = "block";
             cardUs.style.display = "block";
         }
         else if (optionList.value == "animal") {
+            cardAnimali.style.display = "block";
             cardVeg.style.display = "none";
             cardUs.style.display = "none";
         }
@@ -163,8 +164,8 @@ for (let i = 0; i < listaCardAnimal.length; i++) {
         }
         else if (optionList.value == "user") {
             cardAnimali.style.display = "none";
-            cardVeg.style.display = "none";
             cardUs.style.display = "block";
+            cardVeg.style.display = "none";
         }
         
     })
