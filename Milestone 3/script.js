@@ -104,78 +104,84 @@ let lista = [
 	}
 ];
 
+listaCompleta(lista);
+aggiuntaClassi();
 
-lista.forEach((element) => {
-    document.querySelector(".container").innerHTML += `<div class="iconCard ${element.type}s">
-                                                            <div class="icon">
-                                                                <i class="${element.type} ${element.family} ${element.prefix}${element.name}"></i>
-                                                                <p>${element.name}</p>
-                                                            </div>
-                                                        </div>`;
-});
-
-/* let listIconHtml = document.querySelectorAll("i"); */
 let optionList = document.getElementById("select");
 
-let listIconHtml = document.querySelectorAll("i");
+let container = document.querySelector(".container");
 
-  for (let i = 0; i < listIconHtml.length; i++) {
-    const element = listIconHtml[i];
-    
-    
-        if (element.classList.contains("animal")) {
-            
-             element.classList.add("blue");
-             
-        }
-        else if(element.classList.contains("vegetable")) {
-            element.classList.add("orange")
-        }
-        else {
-            element.classList.add("purple")
-        }
-  
-}  
+optionList.addEventListener("change", function() {
+	container.innerHTML = "";
+	let listaFiltrata = lista.filter((icona) => {
+		if (icona.type == this.value)
+		return true
+	})
 
-let listaCardAnimal = document.querySelectorAll(".iconCard.animals");
-let listaCardVegetable = document.querySelectorAll(".iconCard.vegetables");
-let listaCardUser = document.querySelectorAll(".iconCard.users");
+	if (this.value == "animal") {
+		container.innerHTML = "";
+		listaCompleta(listaFiltrata);
+	}
+	else if (this.value == "vegetable") {
+		container.innerHTML = "";
+		listaCompleta(listaFiltrata);
+		
+	}
+	else if (this.value == "user") {
+		container.innerHTML = ""
+		listaCompleta(listaFiltrata)
+	}
+	else if (this.value == "all") {
+		container.innerHTML = ""
+		listaCompleta(lista);
+		
+	}
 
-for (let i = 0; i < listaCardAnimal.length; i++) {
-    let cardAnimali = listaCardAnimal[i];
-    let cardVeg = listaCardVegetable[i];
-    let cardUs = listaCardUser[i];
-   
-    optionList.addEventListener("change", function() {
-        if (optionList.value == "all") {
-            cardAnimali.style.display= "block";
-            cardVeg.style.display = "block";
-            cardUs.style.display = "block";
-        }
-        else if (optionList.value == "animal") {
-            cardAnimali.style.display = "block";
-            cardVeg.style.display = "none";
-            cardUs.style.display = "none";
-        }
-        else if (optionList.value == "vegetable") {
-            cardAnimali.style.display = "none";
-            cardUs.style.display = "none";
-            cardVeg.style.display = "block";
-        }
-        else if (optionList.value == "user") {
-            cardAnimali.style.display = "none";
-            cardUs.style.display = "block";
-            cardVeg.style.display = "none";
-        }
-        
-    })
+	aggiuntaClassi()
 
-    
+	
+})
+
+
+
+
+
+
+
+
+
+
+function listaCompleta(lista) {
+	lista.forEach((icona) => {
+		document.querySelector(".container").innerHTML += `<div class="iconCard ${icona.type}s">
+																<div class="icon">
+																	<i class="${icona.type} ${icona.family} ${icona.prefix}${icona.name}"></i>
+																	<p>${icona.name}</p>
+																</div>
+															</div>`;
+	});
 }
 
 
+function aggiuntaClassi() {
 
-
-
-
-
+	let listIconHtml = document.querySelectorAll("i");
+	
+	  for (let i = 0; i < listIconHtml.length; i++) {
+		const element = listIconHtml[i];
+		
+		
+			if (element.classList.contains("animal")) {
+				
+				 element.classList.add("blue");
+				 
+			}
+			else if(element.classList.contains("vegetable")) {
+				element.classList.add("orange")
+			}
+			else {
+				element.classList.add("purple")
+			}
+	  
+	}   
+}
